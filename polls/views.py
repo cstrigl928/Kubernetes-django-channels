@@ -14,6 +14,17 @@
 
 from django.http import HttpResponse
 
+# Note:
+# -----
+# To run locally, you need to open up 2-terminals:
+# one to run our Cloud-Proxy, and another to run ./manage.py runserver:
+#
+# CMD1:
+# --- 
+# ./cloud_sql_proxy -instances="django-k8s-331621:us-west1:k8s-1"=tcp:5432
+# CMD2:
+# ---
+# ./manage.py runserver
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return HttpResponse("<h1>Hello, Kubernetes!!</h1> <p>Let's Gooo!</p>.")
