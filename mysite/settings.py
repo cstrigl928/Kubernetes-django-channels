@@ -112,7 +112,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 # [START gke_django_static_config]
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
+STATIC_URL = "http://storage.googleapis.com/django-k8s-331621_gameroom-static/static/"
 # STATIC_URL = 'https://storage.googleapis.com/[YOUR_GCS_BUCKET]/static/'
 # [END gke_django_static_config]
 
