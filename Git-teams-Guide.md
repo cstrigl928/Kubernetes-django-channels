@@ -41,5 +41,9 @@ git merge <my_branch>
 git checkout <my_branch>
 # If you want to update your branch with the content of our 'remote-staging' which will contain compilation of ALL our updates, make sure to communicate to teamates you wish to do so. 
 git merge <remote-staging>
-
+git commit -m "updated <my_branch> with remote-staging"
+git push 
+or 
+git push -u origin <my_branch>
+ 
 See [https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging] if you have further questions on branch, checkout, and merge.
