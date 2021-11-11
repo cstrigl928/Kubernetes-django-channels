@@ -10,6 +10,21 @@ db name: `postgresk8s`
 db user-name: `django_user`
 db connection-name: `django-k8s-331621:us-west1:k8s-1`
 
-CMD to create from local machine's CLI
-gcloud sql databases create postgresk8s \
-    --instance k8s-1
+# README_LIST:
+FULL-GUIDE: *GUIDE.MD*
+Break-Down (part1): gke_deploy.info.md
+Break-Down (part2): cloudSQL(postgres).setup.md
+
+https://cloud.google.com/solutions/setting-up-cloud-sql-for-postgresql-for-production
+
+# K8s: Kubectl CMDS:
+*Imperitive*
+kubectl create -f your-object-config.yaml
+kubectl delete -f your-object-config.yaml
+kubectl replace -f your-object-config.yaml
+*Declarative*
+kubectl diff -f configs/
+kubectl apply -f configs/
+
+# Cluster info:
+kubectl get services

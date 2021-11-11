@@ -16,11 +16,16 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
-
+# from chatwss
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('polls.urls')),
+    path('', include('polls.urls')),    # Core is defined from here we will use polls as alias for 'Core'...
+
+    # Each of your urls will be routed from their URL's below. 
+    path('find-game', include('gameroom.urls')),
+    path('chat', include('chatwss.urls')),
+    path('play-game', include('game.urls')),
 ]
 
 # Only serve static files from Django during development

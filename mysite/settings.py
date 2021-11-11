@@ -40,7 +40,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls'
+    'polls',
+    'chatwss',
+    'game',
+    'gameroom',
 )
 
 MIDDLEWARE = (
@@ -58,7 +61,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,11 +76,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
 # [START dbconfig]
 # [START gke_django_database_config]
+# Database
+# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {
     'default': {
         # If you are using Cloud SQL for MySQL rather than PostgreSQL, set
@@ -90,9 +92,10 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-        # 'NAME': os.getenv('DATABASE_NAME'),
-        # 'USER': os.getenv('DATABASE_USER'),
-        # 'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+# Will probably want to use if we have time at the end
+# 'NAME': os.getenv('DATABASE_NAME'),
+# 'USER': os.getenv('DATABASE_USER'),
+# 'PASSWORD': os.getenv('DATABASE_PASSWORD'),
 # [END gke_django_database_config]
 # [END dbconfig]
 
@@ -111,14 +114,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 
-# [START gke_django_static_config]
-# STATIC_URL = '/static/'
+# [START gke_django_static_config] --> Static Content (Css, JS, Media) NOw stored in Cloud
 STATIC_URL = "http://storage.googleapis.com/django-k8s-331621_gameroom-static/static/"
+# STATIC_URL = '/static/'
 # STATIC_URL = 'https://storage.googleapis.com/[YOUR_GCS_BUCKET]/static/'
 # [END gke_django_static_config]
 
 STATIC_ROOT = 'static/'
-
+STATICFILES_DIRS = [ 
+    os.path.join(BASE_DIR, 'static'),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

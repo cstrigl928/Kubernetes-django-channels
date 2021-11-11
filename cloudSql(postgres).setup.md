@@ -12,7 +12,7 @@ To create the secret for instance-level access, provide the location ([PATH_TO_C
 `kubectl create secret generic cloudsql-oauth-credentials   --from-file=credentials.json=//home/kcdouglass/Desktop/Cins465/cins465/DjangoCloud/Kubernetes-django-channels/django-k8s-331621-91fe919253f2.json`
 
 
-# To create the secrets for database access,
+# To create the secrets for database access (If wanted, one can create a Seperate SECRETS.yaml file for DB)
  use the Postgres database name, user name, and password defined in step 2 of Initializing your Cloud SQL instance (same as the one defined in mysite/settings.py):
 
  kubectl create secret generic cloudsql \
@@ -20,7 +20,8 @@ To create the secret for instance-level access, provide the location ([PATH_TO_C
   --from-literal=username=DATABASE_USERNAME \
   --from-literal=password=DATABASE_PASSWORD
 
-e.g.
+*e.g.*
+
 DATABASE_NAME = `postgresk8s`
 DATABASE_USERNAME = `django_user`
 DATABASE_PASSWORD = `nach0pa$$`
@@ -34,8 +35,7 @@ OUTPUT:
 -------
 secret/cloudsql created
 
-
-# Retrieve the public Docker image for the Cloud SQL proxy.
+# Next, Retrieve the public Docker image for the Cloud SQL proxy.
 
 `docker pull gcr.io/cloudsql-docker/gce-proxy` ( :1.16 ) if wanted versioning
 GCP wrong one: b.gcr.io/cloudsql-docker/gce-proxy

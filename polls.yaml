@@ -33,10 +33,10 @@ spec:
   replicas: 3
   selector:
     matchLabels:
+      app: polls
       # Service directs traffic to this.Deployment.spec by 
       # *matching the Polls.Services.selector.app selector* to 
       # the Polls.Deployment.label (in this case, the Selector polls is matched to the label polls)
-      app: polls
   template:
     metadata:
       labels:
@@ -44,9 +44,9 @@ spec:
     spec:
       containers:
       - name: polls-app
+        image: gcr.io/django-k8s-331621/polls:latest
         # Replace  with your project ID or use `make template`
         # image: gcr.io/<your-project-id>/polls
-        image: gcr.io/django-k8s-331621/polls
         # This setting makes nodes pull the docker image every time before
         # starting the pod. This is useful when debugging, but should be turned
         # off in production.
@@ -124,3 +124,8 @@ spec:
   selector:
     app: polls
 # [END service]
+# TargetPort is the 'ContainerPort' of postgres-deployment. It is the port of the PODS that belong to our deployments.
+    # So, targetPort should have the same Address as postgres-deployment['spec'].containerPort
+    # targetPort: Which Port to 'Forward' the Request to the PODS in Deplyment
+    # Common Standard to keep this.ports.port the same as this.port.targetPort
+    
