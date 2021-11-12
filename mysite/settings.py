@@ -78,6 +78,8 @@ TEMPLATES = [
     },
 ]
 
+# Channels
+ASGI_APPLICATION = 'mysite.asgi.application'
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # [START dbconfig]

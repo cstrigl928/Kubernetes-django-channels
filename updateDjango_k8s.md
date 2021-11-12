@@ -7,7 +7,7 @@ After you make updates to your project, you need to:
     **Commands in that order**
     <DOCKER_IMAGE> = gcr.io/django-k8s-331621/polls
       
-    docker build -t gcr.io/django-k8s-331621/polls .
+    docker build -t gcr.io/django-k8s-331621/polls:latest .
     # -----
 # To run locally, you need to open up 2-terminals:
 # one to run our Cloud-Proxy, and another to run ./manage.py runserver:
