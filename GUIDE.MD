@@ -142,7 +142,12 @@ export DATABASE_NAME=DATABASE_NAME
 export DATABASE_USER=DATABASE_USERNAME
 export DATABASE_PASSWORD=DATABASE_PASSWORD
 ==[End_LOCAL_Database_CONFIG]==
-
+export DATABASE_NAME=
+export DATABASE_USER=
+export DATABASE_PASSWORD=
+DATABASE_NAME
+DATABASE_USERNAME
+DATABASE_PASSWORD
 
 # **Google Kubernetes Engine Configuration**
     In this tutorial, we represent our Kubernetes configuration in a SINGLE yaml file called polls.yaml. Note, this could be improved upon. Although it works and it will scale - it is good software engineering practice to use modular design principles and seperate your k8s configuration into "Service" and seperatly "Deployment". At the time that I am making this, there are not many examples out there that actually walk through the setup like I am doing for you but I have already started a second draft (revision) of my yaml configuration setup which will be on this git repo once I see that it works.
@@ -244,3 +249,8 @@ gcloud container clusters create polls \
 (3) 
 
 **DEPLOY Web app on GKE with HTTPS Redirect using Lets Encrypt: https://www.cloudskillsboost.google/focuses/2771?parent=catalog**
+
+
+docker build -t gcr.io/django-k8s-331621/polls:latest .
+
+docker push gcr.io/django-k8s-331621/polls:latest

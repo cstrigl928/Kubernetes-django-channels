@@ -28,3 +28,17 @@ kubectl apply -f configs/
 
 # Cluster info:
 kubectl get services
+
+# To run locally, you need to open up 2-terminals:
+docker build -t gcr.io/django-k8s-331621/polls:latest .
+
+docker push gcr.io/django-k8s-331621/polls:latest
+
+# one to run our Cloud-Proxy, and another to run ./manage.py runserver:
+#
+# CMD1:
+# --- 
+# ./cloud_sql_proxy -instances="django-k8s-331621:us-west1:k8s-1"=tcp:5432
+# CMD2:
+# ---
+# ./manage.py runserver

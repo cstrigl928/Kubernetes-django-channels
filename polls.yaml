@@ -69,6 +69,14 @@ spec:
                   name: cloudsql
                   key: password
             # [END cloudsql_secrets]
+            # [START REDIS]
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: polls-app-config
+                  key: redis.host
+            # [END REDIS]
+
         ports:
         - containerPort: 8080
 

@@ -40,11 +40,15 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'polls',
     'chatwss',
     'game',
     'gameroom',
 )
+
+import channels
+print(f"Channles.version: {channels.__version__}")
 
 MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
@@ -80,6 +84,8 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # [START gke_django_database_config]
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+print(f"DATABSE STATUS/INFO:\n\tNAME:{os.getenv('DATABASE_NAME')} \n\tUser:{os.getenv('DATABASE_USER')} \n\tPASSWORD:{os.getenv('DATABASE_PASSWORD')}")
+
 DATABASES = {
     'default': {
         # If you are using Cloud SQL for MySQL rather than PostgreSQL, set
@@ -92,10 +98,10 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+        # 'NAME': os.getenv('DATABASE_NAME'),
+        # 'USER': os.getenv('DATABASE_USER'),
+        # 'PASSWORD': os.getenv('DATABASE_PASSWORD'),
 # Will probably want to use if we have time at the end
-# 'NAME': os.getenv('DATABASE_NAME'),
-# 'USER': os.getenv('DATABASE_USER'),
-# 'PASSWORD': os.getenv('DATABASE_PASSWORD'),
 # [END gke_django_database_config]
 # [END dbconfig]
 
@@ -112,6 +118,22 @@ USE_L10N = True
 
 USE_TZ = True
 
+# [START REDIS CHANNLE LAYERS]
+REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
+REDIS_PORT = os.getenv('REDIS_PORT', 6379)
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [(REDIS_HOST, REDIS_PORT)],
+            'capacity': 1500,
+            'expiry': 10,
+        },
+    },
+}
+# [END]
+
+
 # Static files (CSS, JavaScript, Images)
 
 # [START gke_django_static_config] --> Static Content (Css, JS, Media) NOw stored in Cloud
@@ -121,9 +143,9 @@ STATIC_URL = "http://storage.googleapis.com/django-k8s-331621_gameroom-static/st
 # [END gke_django_static_config]
 
 STATIC_ROOT = 'static/'
-STATICFILES_DIRS = [ 
-    os.path.join(BASE_DIR, 'static'),
-]
+# STATICFILES_DIRS = [ 
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
