@@ -25,6 +25,10 @@ urlpatterns = [
     # Each of your urls will be routed from their URL's below. 
     path('find-game/', include('gameroom.urls')),
     path('chat/', include('chatwss.urls')),
+<<<<<<< HEAD
+=======
+    # path('ws/chat/', includ)
+>>>>>>> origin/remote-staging
     path('play-game/', include('game.urls')),
 ]
 

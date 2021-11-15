@@ -61,6 +61,8 @@ MIDDLEWARE = (
 )
 
 ROOT_URLCONF = 'mysite.urls'
+# Channels
+ASGI_APPLICATION = 'mysite.asgi.application'
 
 TEMPLATES = [
     {
@@ -78,6 +80,7 @@ TEMPLATES = [
     },
 ]
 
+<<<<<<< HEAD
 # Channels
 ASGI_APPLICATION = 'mysite.asgi.application'
 CHANNEL_LAYERS = {
@@ -88,6 +91,8 @@ CHANNEL_LAYERS = {
         },
     },
 }
+=======
+>>>>>>> origin/remote-staging
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # [START dbconfig]
@@ -129,6 +134,7 @@ USE_L10N = True
 USE_TZ = True
 
 # [START REDIS CHANNLE LAYERS]
+# https://stackoverflow.com/questions/37342571/django-channels-error-cannot-import-backend-asgi-redis-redischannellayer
 REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
 REDIS_PORT = os.getenv('REDIS_PORT', 6379)
 CHANNEL_LAYERS = {
