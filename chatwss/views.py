@@ -13,14 +13,6 @@ from django.shortcuts import render
 # Create your views here.
 
 def chat(request):
-<<<<<<< HEAD
-    context = {}
-    return render(request, 'chatwss/index.html', context)
-
-def room(request, room_name):
-    return render(request, 'chatwss/room.html', {
-        'room_name': room_name
-=======
     context = {'text':'Chat Page'}
     return render(request, 'chatwss/index.html', context)
 
@@ -28,5 +20,4 @@ def room(request, room_name):
 def room(request, room_name):
     return render(request, 'chatwss/room.html', {
         'room_name': room_name,
->>>>>>> origin/remote-staging
     })

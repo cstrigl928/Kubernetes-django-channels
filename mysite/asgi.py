@@ -2,17 +2,10 @@
 # mysite/asgi.py
 import os
 
-<<<<<<< HEAD
-from channels.routing import ProtocolTypeRouter, URLRouter
-from django.core.asgi import get_asgi_application
-from channels.auth import AuthMiddlewareStack
-import chatwss.routing
-=======
 from channels.auth import AuthMiddleware, AuthMiddlewareStack    # Added To Route ASGI to our Consumers
 from channels.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter
->>>>>>> origin/remote-staging
 
 import chatwss.routing as chat_routing
 print(f"Routing: { chat_routing }")
