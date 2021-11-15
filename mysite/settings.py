@@ -121,6 +121,7 @@ USE_L10N = True
 USE_TZ = True
 
 # [START REDIS CHANNLE LAYERS]
+# https://stackoverflow.com/questions/37342571/django-channels-error-cannot-import-backend-asgi-redis-redischannellayer
 REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
 REDIS_PORT = os.getenv('REDIS_PORT', 6379)
 CHANNEL_LAYERS = {

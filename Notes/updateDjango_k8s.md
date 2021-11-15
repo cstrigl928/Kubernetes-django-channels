@@ -49,3 +49,13 @@ After you make updates to your project, you need to:
     CMD to create from local machine's CLI
 gcloud sql databases create postgresk8s \
     --instance k8s-1
+
+
+Python Shell For Testing Redis COnnections:
+$ python3 manage.py shell
+>>> import channels.layers
+>>> channel_layer = channels.layers.get_channel_layer()
+>>> from asgiref.sync import async_to_sync
+>>> async_to_sync(channel_layer.send)('test_channel', {'type': 'hello'})
+>>> async_to_sync(channel_layer.receive)('test_channel')
+% {'type': 'hello'}
