@@ -80,6 +80,14 @@ TEMPLATES = [
 
 # Channels
 ASGI_APPLICATION = 'mysite.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG':{
+            "hosts": [('127.0.0.1',6397)]
+        },
+    },
+}
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # [START dbconfig]
