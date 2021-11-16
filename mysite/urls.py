@@ -23,7 +23,7 @@ urlpatterns = [
     path('', include('polls.urls')),    # Core is defined from here we will use polls as alias for 'Core'...
 
     # Each of your urls will be routed from their URL's below. 
-    path('find-game/', include('gameroom.urls')),
+    path('room/', include('gameroom.urls')),
     path('chat/', include('chatwss.urls')),
     # path('ws/chat/', includ)
     path('play-game/', include('game.urls')),

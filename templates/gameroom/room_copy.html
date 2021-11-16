@@ -6,17 +6,20 @@
     <title>Chat Room</title>
 </head>
 <body>
+    <h2>Games Near You!</h2>
     <textarea id="chat-log" cols="100" rows="20"></textarea><br>
     <input id="chat-message-input" type="text" size="100"><br>
     <input id="chat-message-submit" type="button" value="Send">
     {{ room_name|json_script:"room-name" }}
+    <!--  Assuming the User is Logged in: -->
+    {{ request.user.username|json_script:"user_username" }}
     <div id="user">{{request.user}}</div>
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
         console.log("roomName: ", roomName);
         
-        const my_user = document.getElementById('user').textContent;
-        console.log("User: ", my_user);
+        const user_username = JSON.parse(document.getElementById('user_username').textContent);
+        console.log("user_username: ", user_username);
 
 
         const chatSocket = new WebSocket(
@@ -31,7 +34,7 @@
             const data = JSON.parse(e.data);
             console.log('ChatSocket -> New Message() ' + data.message + '\n');
             document.querySelector('#chat-log').value += (data.message + '\n');
-        };
+        }
 
         chatSocket.onclose = function(e) {
 
@@ -48,14 +51,18 @@
         document.querySelector('#chat-message-submit').onclick = function(e) {
             const messageInputDom = document.querySelector('#chat-message-input');
             const message = messageInputDom.value;
+            // To add User in WS, send to backend here. We created user_username via (request.user | json_script)  
             chatSocket.send(JSON.stringify({
-                'message': message
+                'message': message,
+                'username': user_username,
             }));
             console.warn("URL: ", chatSocket.url);
             console.warn("isOpen: ", chatSocket.OPEN);
             console.log("isClosing: ", chatSocket.CLOSING);
             console.warn("isClosed: ", chatSocket.CLOSED);
             console.log('ChatSocket -> JSON.stringigy -> ChatSocket.Message ' + JSON.stringify({'message':message}));
+            console.log('ChatSocket -> JSON.stringigy -> ChatSocket.User.Username ' + JSON.stringify({'username':user_username}));
+
             messageInputDom.value = '';
         };
     </script>

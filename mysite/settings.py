@@ -62,6 +62,7 @@ MIDDLEWARE = (
 
 ROOT_URLCONF = 'mysite.urls'
 # Channels
+
 ASGI_APPLICATION = 'mysite.asgi.application'
 
 TEMPLATES = [
