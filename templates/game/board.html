@@ -1,5 +1,54 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-<!-- Insert HTML Code Here -->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Chess</title>
+    <!--{% load static %}
+    {% include "app1/bootstrap.html" %}
+    <script src="{% static 'chess.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'chess.css' %}"/>
+      -->
+  </head>
+  <body>
+    <table id="T1" border=1>
+      {% for row in rows %}
+        <tr>
+          <th>{{forloop.revcounter}}</th>
+          {% for name,value in row.items %}
+          <td id="{{name}}">
+              {% autoescape off %}
+              {{value}}
+              {% endautoescape %}
+
+          </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+        <tfoot>
+          <th>&nbsp;</th>
+          <td class= 'footB'>a</td>
+          <td class= 'footB'>b</td>
+          <td class= 'footB'>c</td>
+          <td class= 'footB'>d</td>
+          <td class= 'footB'>e</td>
+          <td class= 'footB'>f</td>
+          <td class= 'footB'>g</td>
+          <td class= 'footB'>h</td>
+     </tfoot>
+    </table>
+
+    <div class="container" align="center">
+          <form method="post">{% csrf_token %}
+            {{chess_form.as_table}}
+          <button type="submit" class="btn btn-primary" name="move">Move</button>
+        </form>
+        <form method="get">
+            <button type="submit" class="btn btn-primary" name="new_game">New Game</button>
+        </form>
+    </div>
+  </body>
+</html>
+
 {% endblock %}
