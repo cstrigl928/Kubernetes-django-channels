@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+
 @login_required(login_url='/login/')
 def game_board(request):
 
