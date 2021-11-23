@@ -25,7 +25,7 @@ def game_board(request):
             Board(user=request.user, location=toLoc, value=value).save()
             Board(user=request.user, location=fromLoc, value="&nbsp;").save()
         else:
-            page_data["chess_form"] = chess_form
+            page_data["chess_fo rm"] = chess_form
 
 
     for row in range (8,0,-1):
